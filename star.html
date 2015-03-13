@@ -1,0 +1,47 @@
+<html>
+<head>
+    <script>
+
+        var move = function(id) {
+            element = document.getElementById(id);
+            console.log(element);
+            xvelo = parseInt(element.getAttribute('xv'));
+            yvelo = parseInt(element.getAttribute('yv'));
+            xpos = parseInt(element.style.top)?parseInt(element.style.top):0;
+            ypos = parseInt(element.style.left)?parseInt(element.style.left):0;
+            element.style.position = "absolute";
+
+            if(xpos + xvelo > window.innerHeight) {
+                element.style.top = window.innerHeight;
+                element.setAttribute('xv', -xvelo);
+            } else if (xpos + xvelo < 0) {
+                element.style.top = 0;
+                element.setAttribute('xv', -xvelo);
+            } else {
+                element.style.top = xpos + xvelo; 
+            }
+
+            if(ypos + yvelo > window.innerWidth) {
+                element.style.left = window.innerWidth;
+                element.setAttribute('yv', -yvelo);
+            } else if (ypos + yvelo < 0) {
+                element.style.left = 0;
+                element.setAttribute('yv', -yvelo);
+            } else {
+                element.style.left = ypos + yvelo; 
+            }            
+        }
+
+        window.onload = function() {
+            for (i = 0; i < 10; i++) {
+
+            }
+            setInterval(function(){move("star")}, 10);
+            //move("star");
+        }
+
+
+    </script>
+</head>
+    <div id="star" xv="5" yv= "5">&#9733;</div>
+</html>
